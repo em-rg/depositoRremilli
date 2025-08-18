@@ -2,20 +2,24 @@ import string
 from collections import Counter
 
 def pulisci_testo(testo: str):
-    """TODO: minuscole + rimozione punteggiatura + split"""
-    return []  # stub
+    """Lowercase + rimozione punteggiatura + split in parole."""
+    return (
+        testo.lower()
+             .translate(str.maketrans('', '', string.punctuation))
+             .split()
+    )
 
 def conta_righe(testo: str) -> int:
-    """TODO: conta le righe"""
-    return 0  # stub
+    """Conta numero totale di righe."""
+    return len(testo.splitlines())
 
 def conta_parole(testo: str) -> int:
-    """TODO: conta le parole"""
-    return 0  # stub
+    """Conta numero totale di parole (case-insensitive)."""
+    return len(pulisci_testo(testo))
 
 def parole_frequenti(testo: str, top_n: int = 5):
-    """TODO: top-n parole più frequenti"""
-    return []  # stub
+    """TODO: implementare nel commit 3."""
+    return []  # ancora stub
 
 def main():
     try:
@@ -25,10 +29,9 @@ def main():
         print("Errore: file 'input.txt' mancante nella cartella corrente.")
         return
 
-    # placeholder output
-    print("Numero righe: (da implementare)")
-    print("Numero parole: (da implementare)")
-    print("Top-5 parole più frequenti: (da implementare)")
+    print("Numero righe:", conta_righe(testo))
+    print("Numero parole:", conta_parole(testo))
+    print("Top-5 parole più frequenti: (non ancora implementato)")
 
 if __name__ == "__main__":
     main()
