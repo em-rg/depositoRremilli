@@ -18,7 +18,7 @@ Sviluppare un modello di classificazione binaria per predire se il consumo energ
 
 ## Struttura del Codice
 
-### 1. 📊 Caricamento dei Dati
+### 1.Caricamento dei Dati
 ```python
 # Caricamento dataset e conversione datetime
 df = pd.read_csv("AEP_hourly.csv")
@@ -26,44 +26,44 @@ df["Datetime"] = pd.to_datetime(df["Datetime"])
 df = df.set_index("Datetime")
 ```
 
-### 2. 🎯 Classificazione del Consumo
+### 2. Classificazione del Consumo
 ```python
 # Calcolo media giornaliera e creazione target
 daily_means = df["AEP_MW"].resample("D").mean()
 df["target"] = (df["AEP_MW"] > df["daily_mean"]).astype(int)
 ```
 
-### 3. 🔧 Feature Engineering
+### 3. Feature Engineering
 Estrazione di 3 features temporali:
 - **hour**: Ora del giorno (0-23)
 - **day_of_week**: Giorno della settimana (0-6)
 - **month**: Mese dell'anno (1-12)
 
-### 4. 📈 Train-Test Split
+### 4. Train-Test Split
 - **Training**: 70% dei dati (84,939 campioni)
 - **Validation**: 15% dei dati (18,143 campioni)
 - **Test**: 15% dei dati (18,191 campioni)
 - Split stratificato per mantenere la distribuzione delle classi
 
-### 5. 🤖 Addestramento del Modello
+### 5. Addestramento del Modello
 ```python
 # Decision Tree Classifier
 tree = DecisionTreeClassifier(max_depth=5, random_state=42)
 tree.fit(X_train, y_train)
 ```
 
-### 6. ✅ Cross Validation
+### 6. Cross Validation
 - 5-fold Stratified Cross Validation
 - Test su subset di 10,000 campioni per ottimizzazione dei tempi
 
 ## Risultati
 
-### 🎯 Performance del Modello
+### Performance del Modello
 - **Validation ROC-AUC**: 0.935 (93.5%)
 - **Cross Validation AUC**: 0.935 ± 0.006
 - **Stabilità**: Molto alta (deviazione standard di solo 0.6%)
 
-### 📊 Interpretazione
+### Interpretazione
 Il modello dimostra **eccellenti performance** con:
 - Alta accuratezza nel distinguere tra periodi di alto e basso consumo
 - Stabilità elevata across different data splits
