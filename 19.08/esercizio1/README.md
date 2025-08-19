@@ -1,7 +1,7 @@
-# Analisi Dati Consumo Energetico AEP
+# Applicazione pratica con il dataset Kaggle Energy Consumption
 
 ## Descrizione del Progetto
-Questo progetto analizza i dati storici del consumo energetico di American Electric Power (AEP) per predire se il consumo sarà superiore o inferiore alla media giornaliera utilizzando tecniche di machine learning.
+Questo progetto analizza i dati  del consumo energetico di American Electric Power (AEP) per predire se il consumo sarà superiore o inferiore alla media giornaliera utilizzando tecniche di machine learning.
 
 ## Dataset
 - **File**: `AEP_hourly.csv`
@@ -69,47 +69,6 @@ Il modello dimostra **eccellenti performance** con:
 - Stabilità elevata across different data splits
 - Capacità predittiva robusta basata solo su features temporali
 
-## Dipendenze
-```
-pandas
-scikit-learn
-```
-
-## Come Eseguire
-1. Assicurarsi di avere il file `AEP_hourly.csv` nella directory
-2. Installare le dipendenze: `pip install pandas scikit-learn`
-3. Eseguire: `python aep_data_analysis.py`
-
-## Output Atteso
-```
-Data shape: (121273, 2)
-First 5 rows:
-                      AEP_MW
-Datetime
-2004-12-31 01:00:00  13478.0
-2004-12-31 02:00:00  12865.0
-...
-
-(84939, 3) (18143, 3) (18191, 3)
-Validation ROC-AUC: 0.9352287698981026
-Eseguendo cross validation...
-Test su subset dei dati (10000 campioni):
-Decision Tree AUC (subset): 0.935 ± 0.006
-```
-
-## Problemi Risolti Durante lo Sviluppo
-
-1. **Errore con `transform("mean")`**: 
-   - **Problema**: ValueError con duplicate labels nel reindex
-   - **Soluzione**: Implementato approach alternativo con mapping delle medie giornaliere
-
-2. **Import errato**: 
-   - **Problema**: `DecisionTreeClassifier` importato da `sklearn.ensemble`
-   - **Soluzione**: Corretto import da `sklearn.tree`
-
-3. **Cross validation lenta**: 
-   - **Problema**: CV su 121K campioni troppo lenta
-   - **Soluzione**: Implementato testing su subset di 10K campioni
 
 ## Conclusioni
 
